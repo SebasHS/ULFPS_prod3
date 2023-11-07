@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1205,7 +1205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3829261415954838625, guid: 27de16147b29a584cbf928ff85bad8b6, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: En1
       objectReference: {fileID: 0}
     - target: {fileID: 3829261415954838625, guid: 27de16147b29a584cbf928ff85bad8b6, type: 3}
       propertyPath: m_Layer
@@ -1387,7 +1387,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 27de16147b29a584cbf928ff85bad8b6, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
 --- !u!1001 &9006429779471780639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1542,6 +1542,6 @@ SceneRoots:
   - {fileID: 1670161112}
   - {fileID: 1552019858}
   - {fileID: 553428171}
-  - {fileID: 3956287086762363461}
-  - {fileID: 9006429779471780639}
   - {fileID: 405805430}
+  - {fileID: 7159071547214093836}
+  - {fileID: 9006429779471780639}

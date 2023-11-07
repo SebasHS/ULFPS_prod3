@@ -13,23 +13,26 @@ public class EnemyController : MonoBehaviour
     #endregion
 
     #region Parameters
-    public  Transform Player;
+    public Transform Player;
     public float DistanceToFollow = 4f;
     public float DistanceToAttack = 3f;
     public float Speed = 1f;
     public Transform FirePoint;
     public float CoolDownTime = 1.0f;
+
+    private float attackCooldown = 2f;
+    private float canAttack = -1f; 
     #endregion
 
     #region Readonly Properties
-    public Rigidbody rb {private set; get;}
-    public Animator animator {private set; get;}
-    public NavMeshAgent agent {private set; get;}
+    public Rigidbody rb { private set; get; }
+    public Animator animator { private set; get; }
+    public NavMeshAgent agent { private set; get; }
     #endregion
 
-    
 
-    private void Awake() 
+
+    private void Awake()
     {
         IdleState = new IdleState(this);
         FollowState = new FollowState(this);
@@ -38,16 +41,17 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
-           
+        // Seteamos el estado inicial
+        currentState = IdleState;
     }
 
-    private void Start() 
+    private void Start()
     {
         currentState.OnStart();
         
     }
 
-    private void Update() 
+    private void Update()
     {
         foreach (var transition in currentState.Transitions)
         {
@@ -60,7 +64,29 @@ public class EnemyController : MonoBehaviour
                 break;
             }
         }
-        currentState.OnUpdate();    
+        currentState.OnUpdate();
+    }
+
+    public void AttackEnemy()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(
+            transform.position,
+            transform.forward,
+            out hit,
+            5f
+        ))
+        {
+            Debug.Log(hit.collider.transform.name);
+            if (hit.collider.transform.name == "Player" && Time.time > canAttack)
+            {
+                canAttack = Time.time + attackCooldown;
+                Debug.Log("Arrañar");
+                PlayerHealth.Instance.TakeDamage(10f);
+
+            }
+        }
     }
 
 
