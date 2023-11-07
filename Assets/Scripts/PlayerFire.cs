@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
+    public EnemyHit enemyHit;
     private void Update() 
     {
         Debug.DrawRay(
@@ -31,7 +32,12 @@ public class PlayerFire : MonoBehaviour
                 temp, 
                 hit.point, 
                 lookAt);
-            
+            if(hit.collider.transform.name == "En1")
+            {
+                EnemyHit enemy = hit.collider.gameObject.GetComponent<EnemyHit>();
+                enemy.recieveHit();
+
+            }
             Destroy(obj, 2f);
             
         }

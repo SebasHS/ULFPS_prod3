@@ -85,6 +85,6 @@ public class FollowState : State
     }
     public override void OnFinish()
     {
-        Debug.Log("Estado Follow: FInish");
+        //Debug.Log("Estado Follow: FInish");
     }
 }

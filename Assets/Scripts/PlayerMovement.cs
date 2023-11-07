@@ -6,10 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float MovementSpeed = 3;
-    [SerializeField]
-    private float RotationSpeed = 2f;
+    [SerializeField] private float MovementSpeed = 3;
+    [SerializeField] private float RotationSpeed = 2f;
 
     private Vector3 direction = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
