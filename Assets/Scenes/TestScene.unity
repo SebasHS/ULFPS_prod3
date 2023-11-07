@@ -776,7 +776,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ShakeTime: 0.1
-  gunName: 
+  gunName: Gun3
   fpsCam: {fileID: 865181642}
   attackPoint: {fileID: 1403203321}
   whatIsEnemy:
@@ -1443,7 +1443,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ShakeTime: 0.1
-  gunName: 
+  gunName: Gun2
   fpsCam: {fileID: 865181642}
   attackPoint: {fileID: 1245792888}
   whatIsEnemy:

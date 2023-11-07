@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     private Transform myCamera;
 
+    private float lastX;
+
     private void Awake() 
     {
         characterController = GetComponent<CharacterController>();   
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update() 
     {
+        
         // Movimiento
         characterController.Move(
             transform.forward * direction.normalized.z * Time.deltaTime * MovementSpeed
@@ -47,20 +50,20 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Rotacion vertical (camara)
-        var rotationAngle = -rotation.x * RotationSpeed * Time.deltaTime* RotationScale;
+        var rotationAngle = -rotation.x * RotationSpeed * Time.deltaTime * RotationScale;
         float currentX = myCamera.eulerAngles.x;
 
-        //if((currentX >= 0 && currentX <= 76) || (currentX >= 282 && currentX <= 360)){
-        if((currentX >= -90f && currentX <= 80)){    
+        if ((currentX >= 0 && currentX <= 80) || (currentX >= 288 && currentX <= 360))
+        {
+            Debug.Log("si" + currentX);
+            myCamera.Rotate(rotationAngle, 0f, 0f);
+            lastX = currentX; // Actualiza lastX con el valor actual de currentX antes de la rotación.
         }
-        myCamera.Rotate(
-            rotationAngle, //TODO: Clamp
-            0f,
-            0f
-        );
-
+        else
+        {
+            myCamera.localEulerAngles = new Vector3(lastX, 0, 0);
+        }
         
-        //Debug.Log();
     }
 
 

@@ -10,6 +10,8 @@ public class CameraShake : MonoBehaviour
         MyInstance=this;
     }
 
+    
+
     public IEnumerator Shake(AnimationCurve curve, float ShakeTime)
     {
         Vector3 StartPosition = transform.position;
