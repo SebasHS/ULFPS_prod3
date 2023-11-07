@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent agent { private set; get; }
     #endregion
 
+    public int maxHealth = 1000;
+    private int currentHealth;
 
 
     private void Awake()
@@ -49,6 +51,9 @@ public class EnemyController : MonoBehaviour
     {
         Player = GameObject.Find("Player").transform;
         currentState.OnStart();
+        currentHealth = maxHealth;
+        Debug.Log("currentHealth inicio"+currentHealth);
+        
     }
 
     private void Update()
@@ -89,4 +94,18 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+    public void TakeDamage(int damage)
+    {
+        // Restar el daño a la salud actual
+        Debug.Log("currentHealth"+currentHealth);
+        Debug.Log("damgeada"+damage);
+        currentHealth -= damage;
+
+        // Comprobar si la salud ha llegado a cero o menos
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
