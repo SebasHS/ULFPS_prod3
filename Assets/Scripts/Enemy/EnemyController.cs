@@ -47,6 +47,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        Player = GameObject.Find("Player").transform;
         currentState.OnStart();
     }
 
@@ -69,15 +70,16 @@ public class EnemyController : MonoBehaviour
     public void AttackEnemy()
     {
         RaycastHit hit;
-
+        
+        Debug.Log("Atacando!");
         if (Physics.Raycast(
-            transform.position,
-            transform.forward,
+            FirePoint.transform.position,
+            FirePoint.transform.forward,
             out hit,
             5f
         ))
         {
-            Debug.Log(hit.collider.transform.name);
+            Debug.Log("Enemy hit: " + hit.collider.transform.name);
             if (hit.collider.transform.name == "Player" && Time.time > canAttack)
             {
                 canAttack = Time.time + attackCooldown;
