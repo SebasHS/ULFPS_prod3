@@ -21,7 +21,7 @@ public class EnemyHit : MonoBehaviour
     public void recieveHit()
     {
         Debug.Log("En: " + enemyHealth);
-        enemyHealth -= 5;
+        enemyHealth -= 10;
         if(enemyHealth <= 0)
         {
             Destroy(enemy);

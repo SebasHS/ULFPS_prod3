@@ -32,7 +32,7 @@ public class PlayerFire : MonoBehaviour
                 temp, 
                 hit.point, 
                 lookAt);
-            if(hit.collider.transform.name == "En1(Clone)")
+            if(hit.collider.transform.name == "En1(Clone)" || hit.collider.transform.name == "En2(Clone)")
             {
                 EnemyHit enemy = hit.collider.gameObject.GetComponent<EnemyHit>();
                 enemy.recieveHit();
