@@ -26,6 +26,7 @@ public class PlayerFire : MonoBehaviour
         )){
             // Choco con algo
             Debug.Log(hit.collider.transform.name);
+            PlayerHealth.Instance.TakeDamage(15f);
             Quaternion lookAt = Quaternion.LookRotation(hit.normal);
             GameObject temp = Resources.Load<GameObject>("BulletCollision");
             var obj = Instantiate(
