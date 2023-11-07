@@ -71,7 +71,7 @@ public class EnemyController : MonoBehaviour
     {
         RaycastHit hit;
         
-        Debug.Log("Atacando!");
+        //Debug.Log("Atacando!");
         if (Physics.Raycast(
             FirePoint.transform.position,
             FirePoint.transform.forward,
@@ -79,7 +79,7 @@ public class EnemyController : MonoBehaviour
             5f
         ))
         {
-            Debug.Log("Enemy hit: " + hit.collider.transform.name);
+            //Debug.Log("Enemy hit: " + hit.collider.transform.name);
             if (hit.collider.transform.name == "Player" && Time.time > canAttack)
             {
                 canAttack = Time.time + attackCooldown;

@@ -40,6 +40,9 @@ public class AttackState : State
     public override void OnUpdate()
     {
         controller.AttackEnemy();
+        controller.animator.SetBool("isFollowing", false);
+        controller.animator.SetBool("isIdle", false);
+        controller.animator.SetBool("isAttacking", true);
     }
     
     public override void OnFinish()

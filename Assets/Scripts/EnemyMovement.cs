@@ -12,9 +12,9 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
     private Transform Player;
-    private float DistanceToFollow = 5;
+    private float DistanceToFollow = 15;
 
-    private float DistanceToAttack = 1;
+    private float DistanceToAttack = 3;
 
     private EnemyState state = EnemyState.Idle;
 
