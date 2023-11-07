@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private float MovementSpeed = 3;
     [SerializeField]
     private float RotationSpeed = 2f;
-
+    [SerializeField]
+    private float RotationScale=2f;
+    public AvatarController avatarController;
     private Vector3 direction = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
 
@@ -26,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start() 
     {
         Cursor.lockState = CursorLockMode.Locked;
+        //myCamera.transform.localEulerAngles = new Vector3(357f, 0f, 0f);
     }
-
     private void Update() 
     {
         // Movimiento
@@ -39,31 +41,32 @@ public class PlayerMovement : MonoBehaviour
         // Rotacion Horizontal
         transform.Rotate(
             0f,
-            rotation.y * RotationSpeed * Time.deltaTime,
+            rotation.y * RotationSpeed * Time.deltaTime* RotationScale,
             0f
         );
 
+
         // Rotacion vertical (camara)
-        var rotationAngle = -rotation.x * RotationSpeed * Time.deltaTime;
+        var rotationAngle = -rotation.x * RotationSpeed * Time.deltaTime* RotationScale;
+        float currentX = myCamera.eulerAngles.x;
 
-        /*var desiredRotationQuat = Quaternion.Euler(transform.rotation.x + rotationAngle,
-            0f,
-            0f);
-        
-
-        Vector3 desiredRotation = desiredRotationQuat.eulerAngles;
-        desiredRotation.x = desiredRotation.x > 180f 
-            ? desiredRotation.x - 360f
-            : desiredRotation.x ;
-
-        desiredRotation.x = Mathf.Clamp(desiredRotation.x, -20f, 20f);
-        /*myCamera.rotation = Quaternion.Euler(desiredRotation); */
+        //if((currentX >= 0 && currentX <= 76) || (currentX >= 282 && currentX <= 360)){
+        if((currentX >= -90f && currentX <= 80)){    
+        }
         myCamera.Rotate(
             rotationAngle, //TODO: Clamp
             0f,
             0f
         );
+
+        
+        //Debug.Log();
     }
+
+
+
+
+
 
     private void OnMove(InputValue value)
     {
@@ -73,15 +76,23 @@ public class PlayerMovement : MonoBehaviour
             0f,
             data.y
         );
+        if (Mathf.Abs(data.x) > Mathf.Epsilon || 
+            Mathf.Abs(data.y) > Mathf.Epsilon)
+        {
+            avatarController.IsWalking(true);
+        }else
+        {
+            avatarController.IsWalking(false);
+        }
     }
 
-    private void OnFire(InputValue value)
+    /*private void OnFire(InputValue value)
     {
         if (value.isPressed)
         {
             myCamera.GetComponent<PlayerFire>().Fire();
         }
-    }
+    }*/
 
     private void OnLook(InputValue value)
     {

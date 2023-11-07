@@ -38,13 +38,13 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
-        // Seteamos el estado inicial
-        currentState = IdleState;    
+           
     }
 
     private void Start() 
     {
         currentState.OnStart();
+        
     }
 
     private void Update() 
@@ -62,4 +62,6 @@ public class EnemyController : MonoBehaviour
         }
         currentState.OnUpdate();    
     }
+
+
 }
