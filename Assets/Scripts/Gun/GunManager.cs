@@ -23,6 +23,7 @@ public class GunManager : MonoBehaviour
 
     void OnChangeWeapon()
     {
+        
         // Desactiva el arma actual.
         DeactivateGun(currentGunIndex);
 
@@ -31,6 +32,9 @@ public class GunManager : MonoBehaviour
 
         // Activa el nuevo arma.
         ActivateGun(currentGunIndex);
+
+        Debug.Log("Quedan "+ guns[currentGunIndex].GetComponent<GunSystem>().bulletsLeft+ 
+                 "balitas en "+ guns[currentGunIndex].GetComponent<GunSystem>().gunName);
     }
 
     void ActivateGun(int index)

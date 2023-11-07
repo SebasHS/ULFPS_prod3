@@ -740,6 +740,8 @@ MonoBehaviour:
   magazineSize: 30
   bulletsPerTap: 1
   allowButtonHold: 1
+  bulletsLeft: 0
+  bulletsShot: 0
   curve:
     serializedVersion: 2
     m_Curve:
@@ -774,6 +776,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ShakeTime: 0.1
+  gunName: 
   fpsCam: {fileID: 865181642}
   attackPoint: {fileID: 1403203321}
   whatIsEnemy:
@@ -995,6 +998,8 @@ MonoBehaviour:
   magazineSize: 30
   bulletsPerTap: 1
   allowButtonHold: 1
+  bulletsLeft: 0
+  bulletsShot: 0
   curve:
     serializedVersion: 2
     m_Curve:
@@ -1029,6 +1034,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ShakeTime: 0.1
+  gunName: Gun1
   fpsCam: {fileID: 865181642}
   attackPoint: {fileID: 1193741226}
   whatIsEnemy:
@@ -1401,6 +1407,8 @@ MonoBehaviour:
   magazineSize: 30
   bulletsPerTap: 1
   allowButtonHold: 1
+  bulletsLeft: 0
+  bulletsShot: 0
   curve:
     serializedVersion: 2
     m_Curve:
@@ -1435,6 +1443,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ShakeTime: 0.1
+  gunName: 
   fpsCam: {fileID: 865181642}
   attackPoint: {fileID: 1245792888}
   whatIsEnemy:
@@ -1509,6 +1518,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 774222280803426382, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1221072492399130039, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397360557936240050, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404005727363935412, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1627249623}
+    - target: {fileID: 1404005727363935412, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267366029104153380, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724031417767583170, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3756004462698910414, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027462051559551381, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724595130235470377, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340822640066360213, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.381
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911607632168835860, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 37789251878459509, guid: 27de16147b29a584cbf928ff85bad8b6, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -1836,54 +1893,6 @@ PrefabInstance:
     - target: {fileID: 9195578836203164848, guid: 27de16147b29a584cbf928ff85bad8b6, type: 3}
       propertyPath: m_Layer
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 774222280803426382, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1221072492399130039, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1397360557936240050, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1404005727363935412, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 1627249623}
-    - target: {fileID: 1404005727363935412, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3267366029104153380, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3724031417767583170, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 3756004462698910414, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4027462051559551381, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724595130235470377, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5340822640066360213, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.381
-      objectReference: {fileID: 0}
-    - target: {fileID: 7911607632168835860, guid: 914d38993ed791e4488a69aa80300f23, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

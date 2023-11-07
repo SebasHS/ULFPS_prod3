@@ -8,9 +8,11 @@ public class GunSystem : MonoBehaviour
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    public int bulletsLeft, bulletsShot;
     public AnimationCurve curve;
     public float ShakeTime;
+
+    public string gunName;
 
     //bools 
     bool shooting, readyToShoot, reloading;
