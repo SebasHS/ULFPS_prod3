@@ -11,28 +11,34 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 direction = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
+public float gravityForce = 9.18f;
 
     private CharacterController characterController;
     private Transform myCamera;
+    private Rigidbody playerRigidbody; 
 
-    private void Awake() 
+
+    private void Awake()
     {
-        characterController = GetComponent<CharacterController>();   
+        characterController = GetComponent<CharacterController>();
         myCamera = transform.Find("Main Camera");
     }
 
-    private void Start() 
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-    }
+        playerRigidbody = GetComponent<Rigidbody>();
 
-    private void Update() 
+    }
+    
+    private void Update()
     {
         // Movimiento
         characterController.Move(
             transform.forward * direction.normalized.z * Time.deltaTime * MovementSpeed
             + transform.right * direction.normalized.x * Time.deltaTime * MovementSpeed
         );
+        characterController.Move(Vector3.down * gravityForce * Time.deltaTime);
 
         // Rotacion Horizontal
         transform.Rotate(
@@ -61,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
             0f,
             0f
         );
+    }
+    private void FixedUpdate()
+    {
+        //playerRigidbody.AddForce(transform.down * gravityForce, ForceMode.Force);
     }
 
     private void OnMove(InputValue value)
