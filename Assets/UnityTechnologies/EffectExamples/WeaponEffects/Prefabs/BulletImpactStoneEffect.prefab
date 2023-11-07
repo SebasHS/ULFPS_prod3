@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 198000012529019072}
   - component: {fileID: 199000010308534436}
   - component: {fileID: 114407232850301898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletImpactStoneEffect
-  m_TagString: Untagged
+  m_TagString: BuletHole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4697,7 +4697,7 @@ GameObject:
   - component: {fileID: 4000010341763616}
   - component: {fileID: 198000014282437374}
   - component: {fileID: 199000012977458086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ImpactDebris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9376,7 +9376,7 @@ GameObject:
   - component: {fileID: 4000012324387004}
   - component: {fileID: 33000010257296828}
   - component: {fileID: 23000011560080986}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,6 +9,8 @@ public class GunSystem : MonoBehaviour
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
+    public AnimationCurve curve;
+    public float ShakeTime;
 
     //bools 
     bool shooting, readyToShoot, reloading;
@@ -67,8 +69,8 @@ public class GunSystem : MonoBehaviour
         {
             Debug.Log(rayHit.collider.tag);
             if (rayHit.collider.CompareTag("Enemy")){
-                Debug.Log("damaging");
-                //rayHit.collider.GetComponent<EnemyController>().TakeDamage(damage);
+                Debug.Log("damaging"+damage);
+                rayHit.collider.GetComponent<EnemyController>().TakeDamage(damage);
             }
                 
         }
@@ -80,10 +82,18 @@ public class GunSystem : MonoBehaviour
         Debug.DrawRay(fpsCam.transform.position, direction * range, Color.red, 1.0f);
 
         //Graphics
+        CameraShake.MyInstance.StartCoroutine(CameraShake.MyInstance.Shake(curve, ShakeTime));
         Quaternion rotation = Quaternion.LookRotation(rayHit.normal);
-        Instantiate(bulletHoleGraphic, rayHit.point, rotation);
+        //Instantiate(bulletHoleGraphic, rayHit.point, rotation);
         Instantiate(muzzleFlash, attackPoint.position, rotation);
         
+        if (rayHit.collider != null)
+        {
+        GameObject bulletHole = Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+
+        // Ancla el bullet hole al objeto impactado
+        bulletHole.transform.parent = rayHit.collider.transform;
+        }
         bulletsLeft--;
         bulletsShot--;
 
