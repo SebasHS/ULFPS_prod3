@@ -88,11 +88,11 @@ public class EnemyController : MonoBehaviour
                 Debug.Log("Arrañar: " + this.transform.name);
                 if(this.transform.name == "En1(Clone)")
                 {
-                    PlayerHealth.Instance.TakeDamage(10f);
+                    PlayerHealth.Instance.TakeDamage(5f);
                 }
                 else if(this.transform.name == "En2(Clone)")
                 {
-                    PlayerHealth.Instance.TakeDamage(20f);
+                    PlayerHealth.Instance.TakeDamage(10f);
                 }
 
             }
