@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GunManager : MonoBehaviour
 {
     public GameObject[] guns; // Coloca tus GameObjects "Gun1", "Gun2" y "Gun3" en el Inspector.
     private int currentGunIndex = 0; // Índice del arma actual.
+
+    public TextMeshProUGUI bulletsText; 
 
     void Start()
     {
@@ -14,11 +17,16 @@ public class GunManager : MonoBehaviour
         
         // Activa el primer arma.
         ActivateGun(currentGunIndex);
+        UpdateBulletsText();
     }
 
     void Update()
     {
-        // Puedes agregar aquí lógica adicional para cambiar de arma en función de la entrada del jugador, si es necesario.
+        if (Input.GetKeyDown(KeyCode.Tab)) 
+        {
+            OnChangeWeapon();
+        }
+        UpdateBulletsText();
     }
 
     void OnChangeWeapon()
@@ -35,7 +43,18 @@ public class GunManager : MonoBehaviour
 
         Debug.Log("Quedan "+ guns[currentGunIndex].GetComponent<GunSystem>().bulletsLeft+ 
                  "balitas en "+ guns[currentGunIndex].GetComponent<GunSystem>().gunName);
+
+        UpdateBulletsText();
     }
+
+    void UpdateBulletsText()
+{
+    GunSystem gunSystem = guns[currentGunIndex].GetComponent<GunSystem>();
+    if (bulletsText != null && gunSystem != null)
+    {
+        bulletsText.text = gunSystem.bulletsLeft.ToString() + "\nAMMO";
+    }
+}
 
     void ActivateGun(int index)
     {

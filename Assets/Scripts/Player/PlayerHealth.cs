@@ -1,14 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
     public float health = 100;
-
     private bool brokenShield = false;
     public float shield = 50;
+
+    public HealthUI healthUI;
+    
+    public TextMeshProUGUI healthText; 
+    public TextMeshProUGUI shieldText; 
 
     private void Awake()
     {
@@ -16,11 +20,13 @@ public class PlayerHealth : MonoBehaviour
         {
             Instance = this;
         }
+        
     }
 
     public void Start()
     {
-        // CanvasManager.Instance.UpdateHealth(health);
+        UpdateHealthText(); 
+        UpdateShieldText();
     }
 
     public void TakeDamage(float damage)
@@ -44,9 +50,24 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        UpdateHealthText(); 
+        healthUI.UpdateHealthIndicator((int)health);
+        UpdateShieldText(); 
+    }
 
-        // CanvasManager.Instance.UpdateHealth(health);
-        
+    private void UpdateHealthText()
+    {
+        if (healthText != null)
+        {
+            healthText.text = health.ToString() + "%" + "\nHEALTH ";
+        }
+    }
 
+    private void UpdateShieldText()
+    {
+        if (shieldText != null)
+        {
+            shieldText.text = shield.ToString() + "%" + "\nARMOR ";
+        }
     }
 }

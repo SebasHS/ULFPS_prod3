@@ -28,7 +28,8 @@ public class GunSystem : MonoBehaviour
     //public CamShake camShake;
     //public float camShakeMagnitude, camShakeDuration;
     //public TextMeshProUGUI text;
-
+    void Start(){
+    }
     private void Awake()
     {
         bulletsLeft = magazineSize;
