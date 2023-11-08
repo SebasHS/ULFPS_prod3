@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
 
     private float attackCooldown = 2f;
     private float canAttack = -1f; 
+    private GameObject child1;
     #endregion
 
     #region Readonly Properties
@@ -40,7 +41,8 @@ public class EnemyController : MonoBehaviour
         FollowState = new FollowState(this);
 
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        child1 = this.transform.GetChild(0).gameObject;
+        animator = child1.GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
         // Seteamos el estado inicial
@@ -76,7 +78,7 @@ public class EnemyController : MonoBehaviour
     {
         RaycastHit hit;
         
-        Debug.Log("Atacando!");
+        //Debug.Log("Atacando!");
         if (Physics.Raycast(
             FirePoint.transform.position,
             FirePoint.transform.forward,
@@ -84,16 +86,24 @@ public class EnemyController : MonoBehaviour
             5f
         ))
         {
-            Debug.Log("Enemy hit: " + hit.collider.transform.name);
+            //Debug.Log("Enemy hit: " + hit.collider.transform.name);
             if (hit.collider.transform.name == "Player" && Time.time > canAttack)
             {
                 canAttack = Time.time + attackCooldown;
-                Debug.Log("Arrañar");
-                PlayerHealth.Instance.TakeDamage(10f);
+                Debug.Log("Arrañar: " + this.transform.name);
+                if(this.transform.name == "En1(Clone)")
+                {
+                    PlayerHealth.Instance.TakeDamage(5f);
+                }
+                else if(this.transform.name == "En2(Clone)")
+                {
+                    PlayerHealth.Instance.TakeDamage(10f);
+                }
 
             }
         }
     }
+
     public void TakeDamage(int damage)
     {
         // Restar el daño a la salud actual

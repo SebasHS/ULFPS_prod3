@@ -24,9 +24,9 @@ public class GunSystem : MonoBehaviour
     public LayerMask whatIsEnemy;
 
     //Graphics
-    public GameObject muzzleFlash, bulletHoleGraphic;
+    public GameObject muzzleFlash, bulletHoleBuilding, bulletHoleBody;
     //public CamShake camShake;
-    public float camShakeMagnitude, camShakeDuration;
+    //public float camShakeMagnitude, camShakeDuration;
     //public TextMeshProUGUI text;
 
     private void Awake()
@@ -71,30 +71,42 @@ public class GunSystem : MonoBehaviour
         {
 
             if (rayHit.collider.CompareTag("Enemy")){
-
+                Debug.Log("Entra hit");
                 rayHit.collider.GetComponent<EnemyController>().TakeDamage(damage);
+            }else
+            {
+                Debug.Log("No entra hit");
             }
                 
         }
 
-        //ShakeCamera
-        //camShake.Shake(camShakeDuration, camShakeMagnitude);
-
-        // Debug.DrawRay para visualizar el raycast
-        Debug.DrawRay(fpsCam.transform.position, direction * range, Color.red, 1.0f);
-
         //Graphics
         CameraShake.MyInstance.StartCoroutine(CameraShake.MyInstance.Shake(curve, ShakeTime));
         Quaternion rotation = Quaternion.LookRotation(rayHit.normal);
-        //Instantiate(bulletHoleGraphic, rayHit.point, rotation);
-        Instantiate(muzzleFlash, attackPoint.position, rotation);
+        
+        
+        // Instancia el Muzzle Flash
+        GameObject muzzleFlashInstance = Instantiate(muzzleFlash, attackPoint.position, rotation);
+
+        // Destruye el Muzzle Flash 
+        Destroy(muzzleFlashInstance, 0.3f);
         
         if (rayHit.collider != null)
         {
-        GameObject bulletHole = Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+            if (rayHit.collider.CompareTag("Enemy")){
+                //Instantiate(bulletHoleGraphic, rayHit.point, rotation);
+                GameObject bulletHole = Instantiate(bulletHoleBody, rayHit.point, Quaternion.LookRotation(rayHit.normal));
 
-        // Ancla el bullet hole al objeto impactado
-        bulletHole.transform.parent = rayHit.collider.transform;
+                // Ancla el bullet hole al objeto impactado
+                bulletHole.transform.parent = rayHit.collider.transform;
+            }else{
+                //Instantiate(bulletHoleGraphic, rayHit.point, rotation);
+                GameObject bulletHole = Instantiate(bulletHoleBuilding, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+
+                // Ancla el bullet hole al objeto impactado
+                bulletHole.transform.parent = rayHit.collider.transform;
+            }
+            
         }
         bulletsLeft--;
         bulletsShot--;
