@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Start()
     {
-
+        // CanvasManager.Instance.UpdateHealth(health);
     }
 
     public void TakeDamage(float damage)
@@ -44,6 +44,9 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        // CanvasManager.Instance.UpdateHealth(health);
+        
 
     }
 }
