@@ -51,11 +51,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2770031213593900500, guid: ffa45c35ac7bb684ba77eae1da8e2965, type: 3}
-  DistanceToFollow: 4
+  DistanceToFollow: 50
   DistanceToAttack: 3
   Speed: 1
   FirePoint: {fileID: 7290873658601558908}
   CoolDownTime: 1
+  maxHealth: 1000
 --- !u!114 &814081010908950778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +229,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 1986148362356b746a39c93486f903f9, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: b24980713984a5841b96f10ab7537482, type: 2}
+      objectReference: {fileID: 9100000, guid: cba429c2b2e7eb04eaa55ee4476e4be6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

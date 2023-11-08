@@ -35,10 +35,14 @@ public class IdleState : State
         //Debug.Log("Estado Idle Start");
         //controller.rb.velocity = Vector3.zero;
         controller.agent.isStopped = true;
+        controller.animator.SetBool("isFollowing", false);
+        controller.animator.SetBool("isIdle", true);
+        controller.animator.SetBool("isAttacking", false);
     }
 
     public override void OnUpdate()
     {
+        
     }
 
     public override void OnFinish()

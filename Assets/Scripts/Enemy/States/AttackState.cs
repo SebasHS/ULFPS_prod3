@@ -35,6 +35,9 @@ public class AttackState : State
         Debug.Log("Estado Attack: Start");
         //controller.rb.velocity = Vector3.zero;
         controller.agent.isStopped = true;
+        controller.animator.SetBool("isFollowing", false);
+        controller.animator.SetBool("isIdle", false);
+        controller.animator.SetBool("isAttacking", true);
     }
 
     public override void OnUpdate()
