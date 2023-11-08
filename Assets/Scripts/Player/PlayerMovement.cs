@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,9 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private float RotationSpeed = 2f;
     [SerializeField]
     private float RotationScale=2f;
+    [SerializeField]
+    private float gravityForce = 9.81f;
     public AvatarController avatarController;
     private Vector3 direction = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
+
 
     private CharacterController characterController;
     private Transform myCamera;
@@ -40,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
             transform.forward * direction.normalized.z * Time.deltaTime * MovementSpeed
             + transform.right * direction.normalized.x * Time.deltaTime * MovementSpeed
         );
+        characterController.Move(Vector3.down * gravityForce * Time.deltaTime);
 
         // Rotacion Horizontal
         transform.Rotate(
