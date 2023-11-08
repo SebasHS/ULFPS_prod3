@@ -9,6 +9,7 @@ public class GunManager : MonoBehaviour
     private int currentGunIndex = 0; // Índice del arma actual.
 
     public TextMeshProUGUI bulletsText; 
+    
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class GunManager : MonoBehaviour
         // Activa el primer arma.
         ActivateGun(currentGunIndex);
         UpdateBulletsText();
+        
     }
 
     void Update()

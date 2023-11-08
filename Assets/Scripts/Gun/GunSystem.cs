@@ -27,14 +27,16 @@ public class GunSystem : MonoBehaviour
     public LayerMask whatIsEnemy;
 
     public Transform gunFBX;
+    private AudioSource audioSource;
 
     //Graphics
     public GameObject muzzleFlash, bulletHoleBuilding, bulletHoleBody;
     //public CamShake camShake;
     //public float camShakeMagnitude, camShakeDuration;
     //public TextMeshProUGUI text;
-    void Start(){
-        
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
     private void Awake()
     {
@@ -66,7 +68,7 @@ public class GunSystem : MonoBehaviour
     }
     private void Shoot()
     {
-        
+        audioSource.Play();
         readyToShoot = false;
 
         //Spread
