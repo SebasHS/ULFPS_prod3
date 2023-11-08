@@ -59,6 +59,9 @@ public class FollowState : State
             0f, 
             controller.Speed
         );
+        controller.animator.SetBool("isFollowing", true);
+        controller.animator.SetBool("isIdle", false);
+        controller.animator.SetBool("isAttacking", false);
         
     }
 

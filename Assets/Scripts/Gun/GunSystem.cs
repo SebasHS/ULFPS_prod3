@@ -71,8 +71,11 @@ public class GunSystem : MonoBehaviour
         {
 
             if (rayHit.collider.CompareTag("Enemy")){
-
+                Debug.Log("Entra hit");
                 rayHit.collider.GetComponent<EnemyController>().TakeDamage(damage);
+            }else
+            {
+                Debug.Log("No entra hit");
             }
                 
         }
