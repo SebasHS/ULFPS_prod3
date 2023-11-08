@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System.Collections;
+
 
 public class GunSystem : MonoBehaviour
 {
@@ -23,12 +26,15 @@ public class GunSystem : MonoBehaviour
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
 
+    public Transform gunFBX;
+
     //Graphics
     public GameObject muzzleFlash, bulletHoleBuilding, bulletHoleBody;
     //public CamShake camShake;
     //public float camShakeMagnitude, camShakeDuration;
     //public TextMeshProUGUI text;
     void Start(){
+        
     }
     private void Awake()
     {
@@ -47,8 +53,11 @@ public class GunSystem : MonoBehaviour
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
-
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) 
+        {
+            Reload();
+            
+        }
         //Shoot
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0){
             bulletsShot = bulletsPerTap;
@@ -81,6 +90,8 @@ public class GunSystem : MonoBehaviour
                 
         }
 
+        
+
         //Graphics
         CameraShake.MyInstance.StartCoroutine(CameraShake.MyInstance.Shake(curve, ShakeTime));
         Quaternion rotation = Quaternion.LookRotation(rayHit.normal);
@@ -91,6 +102,9 @@ public class GunSystem : MonoBehaviour
 
         // Destruye el Muzzle Flash 
         Destroy(muzzleFlashInstance, 0.3f);
+
+        
+        
         
         if (rayHit.collider != null)
         {
@@ -124,12 +138,85 @@ public class GunSystem : MonoBehaviour
     private void Reload()
     {
         reloading = true;
+        // ACAAAAAAAAAAAAA
+        Vector3 originalPosition = gunFBX.localPosition;
+        Vector3 originalRotation = gunFBX.localEulerAngles;
+        StartCoroutine(RealoadMagazineAnimation(originalPosition, originalRotation, 0.2f, reloadTime));
+        
         Invoke("ReloadFinished", reloadTime);
     }
     private void ReloadFinished()
     {
         bulletsLeft = magazineSize;
+
         reloading = false;
     }
+    
+
+
+    private Vector3 targetPosition;
+    private Vector3 targetRotation;
+
+    private IEnumerator RealoadMagazineAnimation(Vector3 originalPosition, Vector3 originalRotation, float animationDuration, float reloadTime)
+    {
+        
+        
+        // Define la posición y rotación final local a la que deseas llegar
+        targetPosition = new Vector3(gunFBX.localPosition.x, gunFBX.localPosition.y - 0.3f, gunFBX.localPosition.z);
+        targetRotation = new Vector3(gunFBX.localEulerAngles.x - 32.0f, gunFBX.localEulerAngles.y, gunFBX.localEulerAngles.z);
+
+        float elapsedTime = 0f;
+
+        Vector3 initialPosition = gunFBX.localPosition;
+        Vector3 initialRotation = gunFBX.localEulerAngles;
+
+        while (elapsedTime < animationDuration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float t = elapsedTime / animationDuration;
+            gunFBX.localPosition = Vector3.Lerp(initialPosition, targetPosition, t);
+            gunFBX.localEulerAngles = Vector3.Lerp(initialRotation, targetRotation, t);
+
+            yield return null;
+        }
+
+        // Asegurarse de que la posición y rotación sean exactamente las de destino al final
+        gunFBX.localPosition = targetPosition;
+        gunFBX.localEulerAngles = targetRotation;
+
+        // Esperar 5 segundos antes de iniciar la siguiente corutina
+        yield return new WaitForSeconds(reloadTime-(animationDuration*2.0f));
+
+        StartCoroutine(ReturnAfterMagazineChange(originalPosition, originalRotation, animationDuration));
+
+
+    }
+
+
+    private IEnumerator ReturnAfterMagazineChange(Vector3 originalPosition, Vector3 originalRotation, float animationDuration)
+    {
+    float elapsedTime = 0f;
+
+    while (elapsedTime < animationDuration)
+    {
+        elapsedTime += Time.deltaTime;
+
+        float t = elapsedTime / animationDuration;
+        gunFBX.localPosition = Vector3.Lerp(gunFBX.localPosition, originalPosition, t);
+        gunFBX.localEulerAngles = Vector3.Lerp(gunFBX.localEulerAngles, originalRotation, t);
+
+        yield return null;
+    }
+    // Asegurarse de que la posición y rotación sean exactamente las de destino al final
+        gunFBX.localPosition = originalPosition;
+        gunFBX.localEulerAngles = originalRotation;
+    }
+
+
+
+
+    
+    
 }
 

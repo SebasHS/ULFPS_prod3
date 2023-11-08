@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         if ((currentX >= 0 && currentX <= 80) || (currentX >= 288 && currentX <= 360))
         {
-            Debug.Log("si" + currentX);
+            //Debug.Log("si" + currentX);
             myCamera.Rotate(rotationAngle, 0f, 0f);
             lastX = currentX; // Actualiza lastX con el valor actual de currentX antes de la rotación.
         }

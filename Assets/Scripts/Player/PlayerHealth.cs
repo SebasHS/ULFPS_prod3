@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI; 
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Security.Cryptography.X509Certificates;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
     
     public TextMeshProUGUI healthText; 
     public TextMeshProUGUI shieldText; 
+
+    public Transform camera;
 
     private void Awake()
     {
@@ -47,13 +52,18 @@ public class PlayerHealth : MonoBehaviour
             if (health <= 0)
             {
                 Debug.Log("Te moriste");
-                Destroy(gameObject);
+                SceneManager.LoadScene("MainScene 2");
+
+               
+                
             }
         }
         UpdateHealthText(); 
         healthUI.UpdateHealthIndicator((int)health);
         UpdateShieldText(); 
     }
+
+  
 
     private void UpdateHealthText()
     {

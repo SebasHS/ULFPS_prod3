@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1367592273296419502}
   m_Layer: 0
   m_Name: En2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,12 +77,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5820c880773500745a5fefdbe90b9e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 2770031213593900500, guid: ffa45c35ac7bb684ba77eae1da8e2965, type: 3}
   DistanceToFollow: 50
   DistanceToAttack: 3
   Speed: 1
   FirePoint: {fileID: 2806895615902238859}
   CoolDownTime: 1
+  maxHealth: 120
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0041656494
+      value: -0.010837555
+      inSlope: 0.45748675
+      outSlope: 0.45748675
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.51690423
+      value: 0.22373356
+      inSlope: -0.017337069
+      outSlope: -0.017337069
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9791565
+      value: -0.003768921
+      inSlope: -0.4921609
+      outSlope: -0.4921609
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShakeTime: 0.1
 --- !u!114 &2142209142968193260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4095012908533464799}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 308e81af65f2c40449efb93e6dde17a0, type: 3}
   m_Name: 
@@ -116,10 +151,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6093151
-  m_Height: 1.7498012
+  m_Radius: 0.29
+  m_Height: 2.38
   m_Direction: 1
-  m_Center: {x: 0.007957399, y: 1.3282568, z: 0}
+  m_Center: {x: 0.007957399, y: 1.03, z: 0}
 --- !u!195 &1367592273296419502
 NavMeshAgent:
   m_ObjectHideFlags: 0

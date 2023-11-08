@@ -34,6 +34,9 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 1000;
     private int currentHealth;
 
+    public AnimationCurve curve;
+    public float ShakeTime;
+
 
     private void Awake()
     {
@@ -94,6 +97,7 @@ public class EnemyController : MonoBehaviour
                 if(this.transform.name == "En1(Clone)")
                 {
                     PlayerHealth.Instance.TakeDamage(5f);
+                    CameraShake.MyInstance.StartCoroutine(CameraShake.MyInstance.Shake(curve, ShakeTime));
                 }
                 else if(this.transform.name == "En2(Clone)")
                 {
