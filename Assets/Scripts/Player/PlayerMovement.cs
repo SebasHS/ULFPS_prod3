@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private float RotationScale=2f;
     [SerializeField]
     private float gravityForce = 9.81f;
+    [SerializeField]
+    private float jumpForce = 7f;
     public AvatarController avatarController;
     private Vector3 direction = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
